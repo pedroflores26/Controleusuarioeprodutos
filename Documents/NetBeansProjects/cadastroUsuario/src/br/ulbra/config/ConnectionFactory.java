@@ -17,6 +17,7 @@ public class ConnectionFactory {
     private static final String USER = "root"; //Login e senha do banco de dados
     private static final String PASS = "";
 
+
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName(DRIVER);
@@ -65,6 +66,5 @@ public class ConnectionFactory {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
 }
 

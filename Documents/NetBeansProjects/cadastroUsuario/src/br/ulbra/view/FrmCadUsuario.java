@@ -8,22 +8,22 @@ package br.ulbra.view;
 import br.ulbra.DAO.UsuarioDAO;
 import br.ulbra.config.CepUtil;
 import br.ulbra.entity.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
-
 
 /**
  *
  * @author aluno.saolucas
  */
 public class FrmCadUsuario extends javax.swing.JFrame {
-public FrmCadUsuario() {
+
+    public FrmCadUsuario() {
         initComponents();
-   
+
     }
 
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,6 +96,11 @@ public FrmCadUsuario() {
         Btnendereço.setBackground(new java.awt.Color(255, 255, 255));
         Btnendereço.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         Btnendereço.setText("Endereço");
+        Btnendereço.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnendereçoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,10 +168,11 @@ public FrmCadUsuario() {
                                 .addComponent(Txtnome, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(Txtemail, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(Txtconfirmar, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Btnendereço, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(Btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(25, 25, 25)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Btnendereço)
+                                        .addComponent(Btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(20, 20, 20)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -210,7 +216,7 @@ public FrmCadUsuario() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8))
@@ -228,7 +234,7 @@ public FrmCadUsuario() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Txtsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
@@ -247,22 +253,21 @@ public FrmCadUsuario() {
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Btnendereço, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
+                        .addComponent(Btnendereço)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,60 +292,89 @@ public FrmCadUsuario() {
     }//GEN-LAST:event_TxtconfirmarActionPerformed
 
     private void BtnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnsalvarActionPerformed
+           // Obter as senhas digitadas
         String senha = Txtsenha.getText();
         String confirmaSenha = Txtconfirmar.getText();
-          
-        // Validar se as senhas são iguais
+
+// Validar se as senhas são iguais
         if (senha.equals(confirmaSenha)) {
 
-            String cep = Txtcep.getText().replaceAll("[^0-9]", ""); // Apenas números
+            String cpf = Txtcpf.getText().replaceAll("[^0-9]", "");
 
-            if (cep.length() == 8) {
+            UsuarioDAO usuarioDAO = null;
+            try {
+                usuarioDAO = new UsuarioDAO();
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmCadUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                // Consultar endereço pelo CEP
-                CepUtil.consultarEnderecoPorCEP(cep, Txtrua, Txtbairro, Txtcidade, Txtestado);
+            if (usuarioDAO.validarCPF(cpf)) {
 
-                // Preparar os dados para salvar
-                String nome = Txtnome.getText();
-                String email = Txtemail.getText();
+                String cep = Txtcep.getText().replaceAll("[^0-9]", "");
 
-                Usuario usuario = new Usuario();
-                usuario.setNome(nome);
-                usuario.setEmail(email);
-                usuario.setSenha(senha);
+                if (cep.length() == 8) {
 
-                try {
-                    UsuarioDAO usuarioDAO = new UsuarioDAO();
-                    usuarioDAO.salvar(usuario);
+                    CepUtil.consultarEnderecoPorCEP(cep, Txtrua, Txtbairro, Txtcidade, Txtestado);
 
-                    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+                    // Pega os dados dos campos
+                    String nome = Txtnome.getText();
+                    String email = Txtemail.getText();
+                    String logradouro = Txtrua.getText();
+                    String bairro = Txtbairro.getText();
+                    String cidade = Txtcidade.getText();
+                    String estado = Txtestado.getText();
+                    String telefone = Txttelefone.getText();
+                    String numero = Txtnumero.getText();
 
-                    // Limpar os campos após salvar
-                    Txtnome.setText("");
-                    Txtemail.setText("");
-                    Txtsenha.setText("");
-                    Txtconfirmar.setText("");
-                    Txtcep.setText("");
-                    Txtrua.setText("");
-                    Txtbairro.setText("");
-                    Txtcidade.setText("");
-                    Txtestado.setText("");
-                    Txttelefone.setText("");
-                    Txtcpf.setText("");
-                    Txtnumero.setText("");
+                    Usuario usuario = new Usuario();
+                    usuario.setNomeusu(nome);
+                    usuario.setEmailusu(email);
+                    usuario.setSenhausu(senha);
+                    usuario.setCepusu(cep);
+                    usuario.setLogradourousu(logradouro);
+                    usuario.setBairrousu(bairro);
+                    usuario.setCidadeusu(cidade);
+                    usuario.setEstado(estado);
+                    usuario.setFoneusu(telefone);
+                    usuario.setCpfusu(cpf);
+                    usuario.setNumerousu(numero);
 
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário: " + e.getMessage());
+                    try {
+                        usuarioDAO.salvar(usuario);
+
+                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+
+                        // Limpar os campos
+                        Txtnome.setText("");
+                        Txtemail.setText("");
+                        Txtsenha.setText("");
+                        Txtconfirmar.setText("");
+                        Txtcep.setText("");
+                        Txtrua.setText("");
+                        Txtbairro.setText("");
+                        Txtcidade.setText("");
+                        Txtestado.setText("");
+                        Txttelefone.setText("");
+                        Txtcpf.setText("");
+                        Txtnumero.setText("");
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário: " + e.getMessage());
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "CEP inválido. Verifique o CEP e tente novamente.");
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "CEP inválido. Verifique o CEP e tente novamente.");
+                JOptionPane.showMessageDialog(null, "CPF inválido. Digite um CPF válido.");
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "As senhas não coincidem. Tente novamente.");
         }
 
+    
     }//GEN-LAST:event_BtnsalvarActionPerformed
 
     private void TxtsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtsenhaActionPerformed
@@ -350,6 +384,22 @@ public FrmCadUsuario() {
     private void TxtbairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtbairroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtbairroActionPerformed
+
+    private void BtnendereçoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnendereçoActionPerformed
+
+        String cep = Txtcep.getText().replaceAll("[^0-9]", ""); // Apenas números
+
+        if (cep.length() == 8) {
+
+            // Consultar endereço pelo CEP
+            CepUtil.consultarEnderecoPorCEP(cep, Txtrua, Txtbairro, Txtcidade, Txtestado);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "CEP inválido. Verifique o CEP e tente novamente.");
+        }
+
+
+    }//GEN-LAST:event_BtnendereçoActionPerformed
 
     /**
      * @param args the command line arguments

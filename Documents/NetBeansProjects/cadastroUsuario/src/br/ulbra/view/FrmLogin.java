@@ -150,7 +150,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnentrarActionPerformed
-
+  new FrmDashBoard().setVisible(true);
         String emailDigitado = Txtemail.getText();
         String senhaDigitada = new String(Txtsenha.getText());
 

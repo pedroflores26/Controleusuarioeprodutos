@@ -42,19 +42,19 @@ public class UsuarioDAO {
     public void salvar(Usuario u) {
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("INSERT INTO cadastrousuario (nome, email, senha, fone, cpf,cepusu , logradourousu , numerousu , bairrousu , cidadeusu , estado) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO usuario (nomeusu, emailusu, senhausu, foneusu, cpfusu,cepusu , logradourousu , numerousu , bairrousu , cidadeusu , estadousu) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-            stmt.setString(2, u.getNome());
-            stmt.setString(3, u.getEmail());
-            stmt.setString(4, u.getSenha());
-            stmt.setString(5, u.getFone());
-            stmt.setString(6, u.getCpf());
-            stmt.setString(7, u.getCepusu());
-            stmt.setString(8, u.getLogradourousu());
-            stmt.setString(9, u.getNumerousu());
-            stmt.setString(10, u.getBairrousu());
-            stmt.setString(11, u.getCidadeusu());
-            stmt.setString(12, u.getEstado());
+            stmt.setString(1, u.getNomeusu());
+            stmt.setString(2, u.getEmailusu());
+            stmt.setString(3, u.getSenhausu());
+            stmt.setString(4, u.getFoneusu());
+            stmt.setString(5, u.getCpfusu());
+            stmt.setString(6, u.getCepusu());
+            stmt.setString(7, u.getLogradourousu());
+            stmt.setString(8, u.getNumerousu());
+            stmt.setString(9, u.getBairrousu());
+            stmt.setString(10, u.getCidadeusu());
+            stmt.setString(11, u.getEstado());
 
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuário Salvo com sucesso!");
@@ -64,39 +64,44 @@ public class UsuarioDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         
-    
+         
+}
+    }
+     public boolean validarCPF(String cpf) {
+        // Remove caracteres não numéricos
+        cpf = cpf.replaceAll("[^\\d]", "");
 
-    
-       
-        String sql = "INSERT INTO USUARIO (nomeusu, emailusu, senhausu, foneusu, cpfusu, cepusu, logradourousu, "
-                + "numerousu, bairrousu, cidadeusu, estadousu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        // CPF precisa ter 11 dígitos
+        if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) return false;
 
-        try (Connection conn = ConnectionFactory.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try {
+            int soma1 = 0, soma2 = 0;
+            for (int i = 0; i < 9; i++) {
+                int digito = Integer.parseInt(cpf.substring(i, i + 1));
+                soma1 += digito * (10 - i);
+                soma2 += digito * (11 - i);
+            }
 
-            // Definindo os parâmetros da consulta
-            stmt.setString(1, Usuario.getNome());
-            stmt.setString(2, usuario.getEmailusu());
-            stmt.setString(3, usuario.getSenhausu());
-            stmt.setString(4, usuario.getFoneusu());
-            stmt.setString(5, usuario.getCpfusu());
-            stmt.setString(6, usuario.getCepusu());
-            stmt.setString(7, usuario.getLogradourousu());
-            stmt.setString(8, usuario.getNumerousu());
-            stmt.setString(9, usuario.getBairrousu());
-            stmt.setString(10, usuario.getCidadeusu());
-            stmt.setString(11, usuario.getEstadousu());
+            int dv1 = 11 - (soma1 % 11);
+            if (dv1 >= 10) dv1 = 0;
+            soma2 += dv1 * 2;
 
-            // Executando a consulta
-            stmt.executeUpdate();
-            System.out.println("Usuário salvo com sucesso!");
+            int dv2 = 11 - (soma2 % 11);
+            if (dv2 >= 10) dv2 = 0;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao salvar o usuário: " + e.getMessage());
+            return cpf.equals(cpf.substring(0, 9) + dv1 + dv2);
+        } catch (Exception e) {
+            return false;
         }
     }
+      public void salvarusu(Usuario usuario) {
+        String sql = "INSERT INTO usuarios (pkidusu, nomeusu, emailusu, senhausu, foneusu, cpfusu, cepusu, " +
+                     "logradourousu, numerousu, bairrousu, cidadeusu, estadousu) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+       
 }
 }
+
+
 

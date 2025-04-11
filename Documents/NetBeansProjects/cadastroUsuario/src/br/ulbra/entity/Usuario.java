@@ -19,7 +19,7 @@ public class Usuario {
 
 public Usuario(){}
 
-public Usuario(int id, String nome, String email, String senha, String fone, String cpf, String cepusu, String logradourousu,
+public Usuario(int id, String nomeusu, String emailusu, String senhausu, String foneusu, String cpfusu, String cepusu, String logradourousu,
                String numerousu, String bairrousu, String cidadeusu, String estado ) {}
 
     public int getId() {
@@ -30,43 +30,43 @@ public Usuario(int id, String nome, String email, String senha, String fone, Str
         this.id = id;
     }
 
-    public String getNome() {
+    public String getNomeusu() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNomeusu(String nome) {
         this.nome = nome;
     }
 
-    public String getEmail() {
+    public String getEmailusu() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmailusu(String email) {
         this.email = email;
     }
 
-    public String getSenha() {
+    public String getSenhausu() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenhausu(String senha) {
         this.senha = senha;
     }
 
-    public String getFone() {
+    public String getFoneusu() {
         return fone;
     }
 
-    public void setFone(String fone) {
+    public void setFoneusu(String fone) {
         this.fone = fone;
     }
 
-    public String getCpf() {
+    public String getCpfusu() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpfusu(String cpf) {
         this.cpf = cpf;
     }
 
